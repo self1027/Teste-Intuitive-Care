@@ -2,6 +2,7 @@
 SET FOREIGN_KEY_CHECKS = 0;
 SET GLOBAL local_infile = 1;
 
+
 -- Seleciona o banco de dados
 USE ans_dados;
 
@@ -33,7 +34,7 @@ CREATE TABLE demonstracoes_contabeis (
     FOREIGN KEY (registro_ans) REFERENCES operadoras(registro_ans)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-LOAD DATA LOCAL INFILE 'C:/Program Files/MySQL/MySQL Server 8.0/Uploads/Relatorio_cadop.csv'
+LOAD DATA LOCAL INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Relatorio_cadop.csv'
 INTO TABLE operadoras
 FIELDS TERMINATED BY ';'
 ENCLOSED BY '"'
@@ -44,7 +45,7 @@ SET data_registro = STR_TO_DATE(@data_registro, '%d/%m/%Y');
 
 -- Importação direta das demonstrações contábeis (arquivo por arquivo)
 -- 1T2023
-LOAD DATA LOCAL INFILE 'C:/Program Files/MySQL/MySQL Server 8.0/Uploads/demonstracoes_contabeis/1T2023.csv'
+LOAD DATA LOCAL INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/demonstracoes_contabeis/1T2023.csv'
 INTO TABLE demonstracoes_contabeis
 CHARACTER SET utf8mb4
 FIELDS TERMINATED BY ';' 
@@ -59,7 +60,7 @@ SET
     vl_saldo_final = CAST(REPLACE(REPLACE(@vl_saldo_final, '.', ''), ',', '.') AS DECIMAL(18,2));
 
 -- 2T2023
-LOAD DATA LOCAL INFILE 'C:/Program Files/MySQL/MySQL Server 8.0/Uploads/demonstracoes_contabeis/2T2023.csv'
+LOAD DATA LOCAL INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/demonstracoes_contabeis/2T2023.csv'
 INTO TABLE demonstracoes_contabeis
 CHARACTER SET utf8mb4
 FIELDS TERMINATED BY ';' 
@@ -74,7 +75,7 @@ SET
     vl_saldo_final = CAST(REPLACE(REPLACE(@vl_saldo_final, '.', ''), ',', '.') AS DECIMAL(18,2));
 
 -- 3T2023
-LOAD DATA LOCAL INFILE 'C:/Program Files/MySQL/MySQL Server 8.0/Uploads/demonstracoes_contabeis/3T2023.csv'
+LOAD DATA LOCAL INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/demonstracoes_contabeis/3T2023.csv'
 INTO TABLE demonstracoes_contabeis
 CHARACTER SET utf8mb4
 FIELDS TERMINATED BY ';' 
@@ -89,7 +90,7 @@ SET
     vl_saldo_final = CAST(REPLACE(REPLACE(@vl_saldo_final, '.', ''), ',', '.') AS DECIMAL(18,2));
 
 -- 4T2023
-LOAD DATA LOCAL INFILE 'C:/Program Files/MySQL/MySQL Server 8.0/Uploads/demonstracoes_contabeis/4T2023.csv'
+LOAD DATA LOCAL INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/demonstracoes_contabeis/4T2023.csv'
 INTO TABLE demonstracoes_contabeis
 CHARACTER SET utf8mb4
 FIELDS TERMINATED BY ';' 
@@ -104,7 +105,7 @@ SET
     vl_saldo_final = CAST(REPLACE(REPLACE(@vl_saldo_final, '.', ''), ',', '.') AS DECIMAL(18,2));
 
 -- 1T2024
-LOAD DATA LOCAL INFILE 'C:/Program Files/MySQL/MySQL Server 8.0/Uploads/demonstracoes_contabeis/1T2024.csv'
+LOAD DATA LOCAL INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/demonstracoes_contabeis/1T2024.csv'
 INTO TABLE demonstracoes_contabeis
 CHARACTER SET utf8mb4
 FIELDS TERMINATED BY ';' 
@@ -119,7 +120,7 @@ SET
     vl_saldo_final = CAST(REPLACE(REPLACE(@vl_saldo_final, '.', ''), ',', '.') AS DECIMAL(18,2));
 
 -- 2T2024
-LOAD DATA LOCAL INFILE 'C:/Program Files/MySQL/MySQL Server 8.0/Uploads/demonstracoes_contabeis/2T2024.csv'
+LOAD DATA LOCAL INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/demonstracoes_contabeis/2T2024.csv'
 INTO TABLE demonstracoes_contabeis
 CHARACTER SET utf8mb4
 FIELDS TERMINATED BY ';' 
@@ -134,7 +135,7 @@ SET
     vl_saldo_final = CAST(REPLACE(REPLACE(@vl_saldo_final, '.', ''), ',', '.') AS DECIMAL(18,2));
 
 -- 3T2024
-LOAD DATA LOCAL INFILE 'C:/Program Files/MySQL/MySQL Server 8.0/Uploads/demonstracoes_contabeis/3T2024.csv'
+LOAD DATA LOCAL INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/demonstracoes_contabeis/3T2024.csv'
 INTO TABLE demonstracoes_contabeis
 CHARACTER SET utf8mb4
 FIELDS TERMINATED BY ';' 
@@ -149,7 +150,7 @@ SET
     vl_saldo_final = CAST(REPLACE(REPLACE(@vl_saldo_final, '.', ''), ',', '.') AS DECIMAL(18,2));
 
 -- 4T2024
-LOAD DATA LOCAL INFILE 'C:/Program Files/MySQL/MySQL Server 8.0/Uploads/demonstracoes_contabeis/4T2024.csv'
+LOAD DATA LOCAL INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/demonstracoes_contabeis/4T2024.csv'
 INTO TABLE demonstracoes_contabeis
 CHARACTER SET utf8mb4
 FIELDS TERMINATED BY ';' 
