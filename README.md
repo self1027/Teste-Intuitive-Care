@@ -1,7 +1,3 @@
-Entendido! Vou reformular o `README.md` para incluir um arquivo `requirements.txt` para cada pasta relevante (1-web-scraper, 2-data-transformer e API). Cada um terá as dependências específicas para funcionar corretamente. A seguir está o novo `README.md`.
-
----
-
 # Teste Intuitive Care
 
 Este repositório contém um projeto organizado em quatro partes principais: um web scraper, um transformador de dados, um banco de dados e uma API. O objetivo é coletar, processar e armazenar dados para análise.
