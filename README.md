@@ -1,8 +1,10 @@
 # Teste Intuitive Care
 
-Este repositório contém um projeto organizado em quatro partes principais: Um web scraper, um transformador de dados e um banco de dados. O objetivo é coletar, processar e armazenar dados para análise.
+Este repositório contém um projeto organizado em quatro partes principais: um web scraper, um transformador de dados, um banco de dados e uma API. O objetivo é coletar, processar e armazenar dados para análise.
 
-## Estrutura do Projeto
+---
+
+## ⚡ Estrutura do Projeto
 
 ```
 /
@@ -22,10 +24,11 @@ Este repositório contém um projeto organizado em quatro partes principais: Um 
 |-- README.md                 # Documentação do projeto
 ```
 
-## Configuração e Execução
+---
+
+## 🔧 Configuração e Execução
 
 ### 1. Web Scraper
-
 O script de raspagem de dados está localizado em `1-web-scraper/script.py`.
 
 **Para executá-lo:**
@@ -33,11 +36,11 @@ O script de raspagem de dados está localizado em `1-web-scraper/script.py`.
 cd 1-web-scraper
 python script.py
 ```
-
 Certifique-se de ter as dependências instaladas antes de rodar o script.
 
-### 2. Transformação de Dados
+---
 
+### 2. Transformação de Dados
 Após a coleta, os dados precisam ser transformados. Execute o script em `2-data-transformer/script.py`.
 
 **Para executar:**
@@ -46,41 +49,63 @@ cd 2-data-transformer
 python script.py
 ```
 
-### 3. Banco de Dados
+---
 
+### 3. Banco de Dados
 Os scripts SQL na pasta `3-db/` devem ser executados em sequência para configurar o banco de dados e carregar os dados.
 
-**Passos:**
-1. Criar o banco de dados:
+#### **Passos:**
+1. Entrar na pasta:
    ```bash
-   mysql -u usuario -p < 3-db/1-create_database.sql
+   cd 3-db
    ```
-2. Criar as tabelas:
+2. Iniciar o MySQL localmente:
    ```bash
-   mysql -u usuario -p nome_do_banco < 3-db/2-create_tables.sql
+   mysql -u root -p
    ```
-3. Carregar os dados:
+3. Criar o banco de dados:
    ```bash
-   mysql -u usuario -p nome_do_banco < 3-db/3-load_data.sql
+   SOURCE C:/caminho/para/seu/arquivo/1-create_database.sql;
    ```
-4. Executar consultas analíticas:
+4. Criar as tabelas:
    ```bash
-   mysql -u usuario -p nome_do_banco < 3-db/4-analysis_queries.sql
+   SOURCE C:/caminho/para/seu/arquivo/2-create_tables.sql;
+   ```
+5. Carregar os dados:
+   ```bash
+   SOURCE C:/caminho/para/seu/arquivo/3-load_data.sql;
+   ```
+6. Executar consultas analíticas:
+   ```bash
+   SOURCE C:/caminho/para/seu/arquivo/4-analysis_queries.sql;
    ```
 
-### Possíveis Erros no MySQL
+---
 
-- **Erro de permissão ao carregar CSV**: O MySQL pode requerer que os arquivos CSV estejam em um diretório específico. Se ocorrer um erro, mova os arquivos para `/var/lib/mysql-files/` e tente novamente.
+## ⚠ Possíveis Erros no MySQL
+
+- **Erro de permissão ao carregar CSV**: O MySQL pode requerer que os arquivos CSV estejam em um diretório específico. Se ocorrer um erro, execute o comando abaixo e mova os diretórios para onde o SQL responder.
+  ```bash
+  SELECT @@global.secure_file_priv;
+  ```
+  Outra forma de resolver é adicionando no arquivo de configuração do MySQL (`my.cnf` no Linux/macOS ou `my.ini` no Windows), na seção `[mysqld]`:
+  ```bash
+  secure_file_priv =
+  ```
+
 - **Erro de autenticação**: Verifique se o usuário e senha estão corretos.
 - **Erro de banco de dados inexistente**: Certifique-se de que o banco de dados foi criado antes de tentar carregar os dados.
 
-## Requisitos
+---
+
+## ✅ Requisitos
 
 - Python 3+
 - MySQL
 - Bibliotecas adicionais (se necessário, especificadas no script)
 
-## Contato
+---
+
+## 👥 Contato
 Caso tenha dúvidas ou sugestões, entre em contato com o desenvolvedor.
 
----
