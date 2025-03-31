@@ -25,6 +25,10 @@ Este repositório contém um projeto organizado em quatro partes principais: um 
 |-- 4-api/                    # API para interação com o banco de dados
 |   |-- app.py                # Código da API
 |   |-- requirements.txt      # Dependências para a API
+|   |-- vue-search-operadoras/ # Frontend Vue.js para busca de operadoras
+|       |-- package.json      # Configurações do Vue.js
+|       |-- src/              # Arquivos do Vue.js
+|       |-- public/           # Arquivos públicos do Vue.js
 |
 |-- .gitignore                # Arquivos ignorados pelo Git
 |-- README.md                 # Documentação do projeto
@@ -123,6 +127,35 @@ Esta API está configurada para executar localmente na porta `8080`. Ela inclui 
 
 ---
 
+### 5. Frontend Vue.js para Busca de Operadoras
+
+A pasta `4-api/vue-search-operadoras` contém o projeto **Vue.js** para busca de operadoras. O frontend interage com a API Flask, realizando buscas e exibindo os resultados.
+
+**Passo 1: Configurar o Frontend Vue.js**
+
+Acesse a pasta `4-api/vue-search-operadoras` e instale as dependências:
+
+```bash
+cd 4-api/vue-search-operadoras
+npm install
+```
+
+**Passo 2: Rodar o Frontend Vue.js**
+
+Com as dependências instaladas, inicie o servidor Vue.js com o comando:
+
+```bash
+npm run serve
+```
+
+O Vue.js ficará disponível em `http://localhost:8080`.
+
+**Passo 3: Acessar a Aplicação Vue.js**
+
+Acesse a aplicação no seu navegador em **http://localhost:8080**. Você poderá buscar operadoras por nome, registro ANS ou outros critérios, e os resultados serão exibidos em uma tabela.
+
+---
+
 ## ⚠ Possíveis Erros
 
 - **Erro de permissão ao carregar CSV no MySQL**: O MySQL pode requerer que os arquivos CSV estejam em um diretório específico. Se ocorrer um erro, execute o comando abaixo e mova os diretórios para onde o SQL responder.
@@ -161,8 +194,15 @@ Antes de rodar os scripts, você precisará instalar as dependências. Para faci
    pip install -r requirements.txt
    ```
 
+4. Para o Frontend Vue.js:
+   ```bash
+   cd 4-api/vue-search-operadoras
+   npm install
+   ```
+
 - Python 3+
 - MySQL
+- Vue.js
 - Bibliotecas adicionais conforme especificado em `requirements.txt`
 
 ---
