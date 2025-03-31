@@ -175,28 +175,3 @@ Antes de rodar os scripts, você precisará instalar as dependências. Para faci
 Caso tenha dúvidas ou sugestões, entre em contato com o desenvolvedor.
 
 ---
-
-**requirements.txt (para cada pasta):**
-
-**1-web-scraper/requirements.txt**
-```
-requests==2.25.1
-beautifulsoup4==4.9.3
-```
-
-**2-data-transformer/requirements.txt**
-```
-pandas==1.2.3
-pdfplumber==0.5.28
-```
-
-**4-api/requirements.txt**
-```
-flask==2.0.1
-flask-cors==3.1.1
-pandas==1.2.3
-```
-
----
-
-Agora, cada módulo tem seu próprio arquivo `requirements.txt` para facilitar a instalação das dependências necessárias, e o `README.md` está atualizado com as instruções detalhadas para cada parte do projeto.
