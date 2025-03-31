@@ -1,4 +1,4 @@
-# Teste Intuitive Care
+## Teste Intuitive Care
 
 Este repositório contém um projeto organizado em quatro partes principais: um web scraper, um transformador de dados, um banco de dados e uma API. O objetivo é coletar, processar e armazenar dados para análise.
 
@@ -207,7 +207,32 @@ Antes de rodar os scripts, você precisará instalar as dependências. Para faci
 
 ---
 
+### Testes para a Rota `/search` via Postman
+
+Aqui estão os testes para verificar a funcionalidade da busca na rota `/search`:
+
+### 1. **Teste de Busca por Nome da Razão Social**
+- **Método**: `GET`
+- **URL**: `http://localhost:8080/search?query=ODONTO`
+- **Descrição**: Este teste busca registros que contêm "ODONTO" na coluna **Razao_Social**.
+- **Resultado Esperado**: A resposta JSON deve conter um ou mais registros onde o campo **Razao_Social** contenha "ODONTO".
+
+### 2. **Teste de Busca por Nome Fantasia**
+- **Método**: `GET`
+- **URL**: `http://localhost:8080/search?query=3S%20ADMINISTRADORA`
+- **Descrição**: Este teste busca registros que contêm "3S ADMINISTRADORA" na coluna **Nome_Fantasia**.
+- **Resultado Esperado**: A resposta JSON deve conter um ou mais registros onde o campo **Nome_Fantasia** contenha "3S ADMINISTRADORA".
+
+### 3. **Teste de Busca por Registro ANS**
+- **Método**: `GET`
+- **URL**: `http://localhost:8080/search?query=419761`
+- **Descrição**: Este teste busca registros que contenham "419761" no campo **Registro_ANS**.
+- **Resultado Esperado**: A resposta JSON deve retornar o registro com o **Registro_ANS** igual a "419761".
+  
+---
+
 ## 👥 Contato
 Caso tenha dúvidas ou sugestões, entre em contato com o desenvolvedor.
 
 ---
+
