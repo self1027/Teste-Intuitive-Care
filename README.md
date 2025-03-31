@@ -1,16 +1,20 @@
 # Teste Intuitive Care
 
-Este repositório contém um projeto organizado em quatro partes principais: Um web scraper, um transformador de dados e um banco de dados. O objetivo é coletar, processar e armazenar dados para análise.
+Este repositório contém um projeto organizado em quatro partes principais: um web scraper, um transformador de dados, um banco de dados e uma API. O objetivo é coletar, processar e armazenar dados para análise.
 
-## Estrutura do Projeto
+---
+
+## ⚡ Estrutura do Projeto
 
 ```
 /
 |-- 1-web-scraper/            # Raspagem de dados
 |   |-- script.py             # Script para coletar dados da web
+|   |-- requirements.txt      # Dependências para o Web Scraper
 |
 |-- 2-data-transformer/       # Processamento dos dados coletados
 |   |-- script.py             # Script para transformar os dados
+|   |-- requirements.txt      # Dependências para o Data Transformer
 |
 |-- 3-db/                     # Banco de dados
 |   |-- 1-create_database.sql  # Cria o banco de dados
@@ -18,69 +22,192 @@ Este repositório contém um projeto organizado em quatro partes principais: Um 
 |   |-- 3-load_data.sql        # Carrega os dados no banco
 |   |-- 4-analysis_queries.sql # Consultas para análise
 |
+|-- 4-api/                    # API para interação com o banco de dados
+|   |-- app.py                # Código da API
+|   |-- requirements.txt      # Dependências para a API
+|   |-- vue-search-operadoras/ # Frontend Vue.js para busca de operadoras
+|       |-- package.json      # Configurações do Vue.js
+|       |-- src/              # Arquivos do Vue.js
+|       |-- public/           # Arquivos públicos do Vue.js
+|
 |-- .gitignore                # Arquivos ignorados pelo Git
 |-- README.md                 # Documentação do projeto
 ```
 
-## Configuração e Execução
+---
+
+## 🔧 Configuração e Execução
 
 ### 1. Web Scraper
-
 O script de raspagem de dados está localizado em `1-web-scraper/script.py`.
+
+**Dependências para o Web Scraper:**
+- Para instalar as dependências necessárias, execute:
+```bash
+cd 1-web-scraper
+pip install -r requirements.txt
+```
 
 **Para executá-lo:**
 ```bash
-cd 1-web-scraper
 python script.py
 ```
 
-Certifique-se de ter as dependências instaladas antes de rodar o script.
+Este script acessa um site, encontra os links dos anexos, baixa e os compacta em um arquivo ZIP.
+
+---
 
 ### 2. Transformação de Dados
-
 Após a coleta, os dados precisam ser transformados. Execute o script em `2-data-transformer/script.py`.
+
+**Dependências para o Data Transformer:**
+- Para instalar as dependências necessárias, execute:
+```bash
+cd 2-data-transformer
+pip install -r requirements.txt
+```
 
 **Para executar:**
 ```bash
-cd 2-data-transformer
 python script.py
 ```
 
-### 3. Banco de Dados
+Este script processa os dados extraídos dos PDFs e gera um CSV com as informações.
 
+---
+
+### 3. Banco de Dados
 Os scripts SQL na pasta `3-db/` devem ser executados em sequência para configurar o banco de dados e carregar os dados.
 
-**Passos:**
-1. Criar o banco de dados:
+#### **Passos:**
+1. Entrar na pasta:
    ```bash
-   mysql -u usuario -p < 3-db/1-create_database.sql
+   cd 3-db
    ```
-2. Criar as tabelas:
+2. Iniciar o MySQL localmente:
    ```bash
-   mysql -u usuario -p nome_do_banco < 3-db/2-create_tables.sql
+   mysql -u root -p
    ```
-3. Carregar os dados:
+3. Criar o banco de dados:
    ```bash
-   mysql -u usuario -p nome_do_banco < 3-db/3-load_data.sql
+   SOURCE C:/caminho/para/seu/arquivo/1-create_database.sql;
    ```
-4. Executar consultas analíticas:
+4. Criar as tabelas:
    ```bash
-   mysql -u usuario -p nome_do_banco < 3-db/4-analysis_queries.sql
+   SOURCE C:/caminho/para/seu/arquivo/2-create_tables.sql;
+   ```
+5. Carregar os dados:
+   ```bash
+   SOURCE C:/caminho/para/seu/arquivo/3-load_data.sql;
+   ```
+6. Executar consultas analíticas:
+   ```bash
+   SOURCE C:/caminho/para/seu/arquivo/4-analysis_queries.sql;
    ```
 
-### Possíveis Erros no MySQL
+---
 
-- **Erro de permissão ao carregar CSV**: O MySQL pode requerer que os arquivos CSV estejam em um diretório específico. Se ocorrer um erro, mova os arquivos para `/var/lib/mysql-files/` e tente novamente.
+### 4. API
+
+A API permite a interação com o banco de dados, proporcionando funcionalidades como a busca de operadoras no banco de dados.
+
+**Dependências para a API:**
+- Para instalar as dependências necessárias, execute:
+```bash
+cd 4-api
+pip install -r requirements.txt
+```
+
+**Para executar:**
+```bash
+python app.py
+```
+
+Esta API está configurada para executar localmente na porta `8080`. Ela inclui um endpoint de busca (`/search`) que permite consultar dados das operadoras no banco de dados.
+
+---
+
+### 5. Frontend Vue.js para Busca de Operadoras
+
+A pasta `4-api/vue-search-operadoras` contém o projeto **Vue.js** para busca de operadoras. O frontend interage com a API Flask, realizando buscas e exibindo os resultados.
+
+**Passo 1: Configurar o Frontend Vue.js**
+
+Acesse a pasta `4-api/vue-search-operadoras` e instale as dependências:
+
+```bash
+cd 4-api/vue-search-operadoras
+npm install
+```
+
+**Passo 2: Rodar o Frontend Vue.js**
+
+Com as dependências instaladas, inicie o servidor Vue.js com o comando:
+
+```bash
+npm run serve
+```
+
+O Vue.js ficará disponível em `http://localhost:8080`.
+
+**Passo 3: Acessar a Aplicação Vue.js**
+
+Acesse a aplicação no seu navegador em **http://localhost:8080**. Você poderá buscar operadoras por nome, registro ANS ou outros critérios, e os resultados serão exibidos em uma tabela.
+
+---
+
+## ⚠ Possíveis Erros
+
+- **Erro de permissão ao carregar CSV no MySQL**: O MySQL pode requerer que os arquivos CSV estejam em um diretório específico. Se ocorrer um erro, execute o comando abaixo e mova os diretórios para onde o SQL responder.
+  ```bash
+  SELECT @@global.secure_file_priv;
+  ```
+  Outra forma de resolver é adicionando no arquivo de configuração do MySQL (`my.cnf` no Linux/macOS ou `my.ini` no Windows), na seção `[mysqld]`:
+  ```bash
+  secure_file_priv =
+  ```
+
 - **Erro de autenticação**: Verifique se o usuário e senha estão corretos.
 - **Erro de banco de dados inexistente**: Certifique-se de que o banco de dados foi criado antes de tentar carregar os dados.
 
-## Requisitos
+---
+
+## ✅ Requisitos
+
+Antes de rodar os scripts, você precisará instalar as dependências. Para facilitar, temos arquivos `requirements.txt` nas pastas de cada módulo. Para instalar as dependências, execute:
+
+1. Para o Web Scraper:
+   ```bash
+   cd 1-web-scraper
+   pip install -r requirements.txt
+   ```
+   
+2. Para o Data Transformer:
+   ```bash
+   cd 2-data-transformer
+   pip install -r requirements.txt
+   ```
+
+3. Para a API:
+   ```bash
+   cd 4-api
+   pip install -r requirements.txt
+   ```
+
+4. Para o Frontend Vue.js:
+   ```bash
+   cd 4-api/vue-search-operadoras
+   npm install
+   ```
 
 - Python 3+
 - MySQL
-- Bibliotecas adicionais (se necessário, especificadas no script)
+- Vue.js
+- Bibliotecas adicionais conforme especificado em `requirements.txt`
 
-## Contato
+---
+
+## 👥 Contato
 Caso tenha dúvidas ou sugestões, entre em contato com o desenvolvedor.
 
 ---
